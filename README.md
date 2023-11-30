@@ -9,5 +9,5 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 =======
 # space-app
-Projeto feito no curso da Alura que simula uma galeria de fotos do espaço, onde podemos favoritar imagens e possui também um modal que mostra a imagem em um tamanho maior. Além disso, podemos filtrar imagens por categorias
+Esse projeto, desenvolvido durante o curso da Alura, simula uma galeria de fotos do espaço. Destaca-se pela capacidade de favoritar imagens, apresentando um modal para visualização ampliada, e oferece a funcionalidade de filtrar imagens por categorias. Isso proporciona uma experiência interativa e organizada na exploração das imagens espaciais.
 >>>>>>> 3fe964d72b836ce56ed4d8efadfe6bde769afcd5
