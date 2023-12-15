@@ -8,6 +8,11 @@ const BotaoIcone = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  @media screen and (max-width: 720px) {
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
 `;
 
 export default BotaoIcone;

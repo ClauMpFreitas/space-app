@@ -27,6 +27,11 @@ const DialogEstilizado = styled.dialog`
       right: 60px;
     }
   }
+
+  @media screen and (max-width: 720px) {
+    justify-content: space-evenly;
+    width: 95%;
+  }
 `;
 
 const ModalZoom = ({ foto, aoFechar, aoAlternarFavorito }) => {

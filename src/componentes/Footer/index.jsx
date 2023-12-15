@@ -13,6 +13,11 @@ const FooterBox = styled.footer`
   justify-content: space-between;
   background: #04244f;
   margin-top: 73px;
+
+  @media screen and (max-width: 720px) {
+    width: 100%;
+    justify-content: space-around;
+  }
 `;
 
 const IconeBox = styled.div`
@@ -20,6 +25,10 @@ const IconeBox = styled.div`
   height: 22px;
   align-items: center;
   gap: 22px;
+
+  @media screen and (max-width: 720px) {
+    align-items: flex-start;
+  }
 `;
 const Credito = styled.text`
   font-family: "GandhiSansRegular";
@@ -31,6 +40,11 @@ const Credito = styled.text`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+
+  @media screen and (max-width: 720px) {
+    text-align: center;
+    font-size: 25px;
+  }
 `;
 
 const Footer = () => {

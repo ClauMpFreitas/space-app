@@ -11,8 +11,14 @@ const FigureEstilizada = styled.figure`
   padding-bottom: 10px;
   padding-top: 10px;
   border-radius: 20px;
-  max-width: 100%;
+  width: 96%;
   background-size: cover;
+
+  @media screen and (max-width: 720px) {
+    margin: 0;
+    width: 96%;
+    height: 100px;
+  }
 `;
 
 const TituloEstilizado = styled.h1`
@@ -22,6 +28,10 @@ const TituloEstilizado = styled.h1`
   color: #ffffff;
   max-width: 300px;
   padding: 0 64px;
+
+  @media screen and (max-width: 720px) {
+    text-align: center;
+  }
 `;
 
 const Banner = ({ texto, backgroundImage }) => {

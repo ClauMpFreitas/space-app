@@ -30,12 +30,21 @@ const AppContainer = styled.div`
 const MainContainer = styled.main`
   display: flex;
   gap: 24px;
+
+  @media screen and (max-width: 720px) {
+    flex-direction: column;
+  }
 `;
 
 const ConteudoGaleria = styled.section`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+
+  @media screen and (max-width: 720px) {
+    display: block;
+    margin-left: 15px;
+  }
 `;
 
 const App = () => {

@@ -1,12 +1,18 @@
 import styled from "styled-components";
 import Titulo from "../../Titulo";
 import fotos from "./fotos-populares.json";
+import React, { useState } from "react";
 
 const ColunaFotos = styled.li`
   display: flex;
   flex-direction: column;
   margin-right: 15px;
   gap: 16px;
+
+  @media screen and (max-width: 720px) {
+    gap: 8px;
+    margin: 15px;
+  }
 `;
 
 const Botao = styled.button`
@@ -24,23 +30,41 @@ const Botao = styled.button`
   background-color: transparent;
   padding: 2px;
   margin-top: 24px;
+
+  @media screen and (max-width: 720px) {
+    width: 150px;
+    padding: 0;
+    margin: 15px;
+  }
 `;
 
 const Imagem = styled.img`
   max-width: 212px;
+
+  @media screen and (max-width: 720px) {
+    width: 150px;
+    justify-content: flex-end;
+  }
 `;
 
 const Populares = () => {
+  const [mostrarMais, setMostrarMais] = useState(false);
+  const fotosExibidas = mostrarMais ? fotos : fotos.slice(0, 3);
+
+  const handleVerMaisClick = () => {
+    setMostrarMais(true);
+  };
+
   return (
     <section>
       <Titulo $alinhamento="center">Populares</Titulo>
 
       <ColunaFotos>
-        {fotos.map((foto) => (
+        {fotosExibidas.map((foto) => (
           <Imagem key={foto.id} src={foto.path} alt={foto.alt} />
         ))}
       </ColunaFotos>
-      <Botao>Ver mais</Botao>
+      {!mostrarMais && <Botao onClick={handleVerMaisClick}>Ver mais</Botao>}
     </section>
   );
 };

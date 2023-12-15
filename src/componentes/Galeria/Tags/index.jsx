@@ -6,6 +6,12 @@ const TagsContainer = styled.section`
   align-items: center;
   gap: 64px;
   margin-top: 56px;
+
+  @media screen and (max-width: 720px) {
+    display: grid;
+    gap: 30px;
+    align-items: center;
+  }
 `;
 
 const TagTitulo = styled.h3`
@@ -33,6 +39,14 @@ const Div = styled.div`
   display: flex;
   gap: 24px;
   justify-content: end;
+
+  @media screen and (max-width: 720px) {
+    justify-content: flex-start;
+    width: 97%;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 const Tags = ({ setTag, tag }) => {

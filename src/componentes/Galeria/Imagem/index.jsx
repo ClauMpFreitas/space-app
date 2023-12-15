@@ -10,6 +10,7 @@ const Figure = styled.figure`
     flex-direction: column;
     & > img {
         max-width: 100%;
+        width: 100%;
         border-radius: 20px 20px 0 0;
     }
     figcaption {
@@ -27,6 +28,12 @@ const Figure = styled.figure`
         h3, h4 {
             margin: 0;
             font-size: 16px;
+        }
+
+        @media screen and (max-width: 720px) {
+            width: 100%;
+            flex-grow: 0;
+            padding: 5px;
         }
     }
 `

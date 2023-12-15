@@ -5,8 +5,17 @@ const HeaderEstilizado = styled.header`
   padding: 20px;
   display: flex;
   justify-content: space-between;
+
   img {
     max-width: 300px;
+  }
+
+  @media screen and (max-width: 720px) {
+    flex-direction: column;
+
+    img {
+      max-width: 50%;
+    }
   }
 `;
 
