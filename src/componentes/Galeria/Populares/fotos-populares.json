@@ -23,5 +23,25 @@
     "path": "/imagens/populares/foto-5.png",
     "alt": "meteoro",
     "id": 5
+  },
+  {
+    "path": "/imagens/populares/foto-6.png",
+    "alt": "galáxia",
+    "id": 6
+  },
+  {
+    "path": "/imagens/populares/foto-7.png",
+    "alt": "espaço",
+    "id": 7
+  },
+  {
+    "path": "/imagens/populares/foto-8.png",
+    "alt": "galáxia",
+    "id": 8
+  },
+  {
+    "path": "/imagens/populares/foto-9.png",
+    "alt": "espaço",
+    "id": 9
   }
 ]

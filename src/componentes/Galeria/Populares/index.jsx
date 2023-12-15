@@ -48,11 +48,17 @@ const Imagem = styled.img`
 `;
 
 const Populares = () => {
-  const [mostrarMais, setMostrarMais] = useState(false);
-  const fotosExibidas = mostrarMais ? fotos : fotos.slice(0, 3);
+  const [quantidadeExibida, setQuantidadeExibida] = useState(3);
+  const totalFotos = fotos.length;
+  const maisFotosDisponiveis = totalFotos - quantidadeExibida;
 
   const handleVerMaisClick = () => {
-    setMostrarMais(true);
+    const novasFotosExibidas =
+      quantidadeExibida + 2 <= totalFotos
+        ? quantidadeExibida + 2
+        : totalFotos;
+
+    setQuantidadeExibida(novasFotosExibidas);
   };
 
   return (
@@ -60,11 +66,14 @@ const Populares = () => {
       <Titulo $alinhamento="center">Populares</Titulo>
 
       <ColunaFotos>
-        {fotosExibidas.map((foto) => (
+        {fotos.slice(0, quantidadeExibida).map((foto) => (
           <Imagem key={foto.id} src={foto.path} alt={foto.alt} />
         ))}
       </ColunaFotos>
-      {!mostrarMais && <Botao onClick={handleVerMaisClick}>Ver mais</Botao>}
+
+      {maisFotosDisponiveis > 0 && (
+        <Botao onClick={handleVerMaisClick}>Ver mais</Botao>
+      )}
     </section>
   );
 };
