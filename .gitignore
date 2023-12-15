@@ -1,0 +1,17 @@
+# Arquivos e diretórios específicos a serem ignorados no commit
+
+# Node.js
+node_modules/
+
+# Arquivos gerados durante o desenvolvimento
+dist/
+
+# Arquivos específicos a serem ignorados
+package-lock.json
+.vite/
+
+# Arquivos gerados durante a compilação
+public/build/
+
+# Arquivos de configuração que podem variar entre ambientes
+.env
