@@ -1,63 +1,72 @@
-import { styled } from "styled-components";
-import Titulo from "../Titulo";
+import styled from "styled-components";
 import Tags from "./Tags";
+import Titulo from "../Titulo";
 import Populares from "./Populares";
 import Imagem from "./Imagem";
 
-const GaleriaContainer = styled.div`
+const LayoutGaleria = styled.div`
   display: flex;
-  gap: 24px;
+  gap: 1.5rem;
+  grid-area: galeria;
 
-  @media screen and (max-width: 720px) {
-    width: 100%;
-    gap: 20px;
+  @media screen and (max-width: 1024px) {
+    gap: 1.25rem;
+  }
+
+  @media screen and (max-width: 743px) {
+    flex-direction: column;
+    gap: 2.5rem;
   }
 `;
 
-const SecaoFluida = styled.section`
+const GaleriaContainer = styled.section`
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  gap: 1.5rem;
 
-  @media screen and (max-width: 720px) {
-    flex-grow: 1;
+  @media screen and (max-width: 1024px) {
+    gap: 1.625rem;
+  }
+
+  @media screen and (max-width: 743px) {
+    gap: 2rem;
   }
 `;
 
 const ImagensContainer = styled.section`
-  display: grid;
-  grid-template-columns: repeat(2, minmax(200px, 1fr));
-  gap: 24px;
-
-  @media screen and (max-width: 720px) {
-    width: 105%;
-    gap: 5px;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-evenly;
 `;
 
 const Galeria = ({
   fotos = [],
+  tag,
   setTag,
   aoFotoSelecionada,
   aoAlternarFavorito,
 }) => {
   return (
     <>
-      <Tags setTag={setTag} /> -
-      <GaleriaContainer>
-        <SecaoFluida>
+      <Tags tag={tag} setTag={setTag} />
+      <LayoutGaleria>
+        <GaleriaContainer>
           <Titulo>Navegue pela galeria</Titulo>
           <ImagensContainer>
             {fotos.map((foto) => (
               <Imagem
                 key={foto.id}
-                foto={foto}
                 aoZoomSolicitado={aoFotoSelecionada}
                 aoAlternarFavorito={aoAlternarFavorito}
+                foto={foto}
               />
             ))}
           </ImagensContainer>
-        </SecaoFluida>
+        </GaleriaContainer>
         <Populares />
-      </GaleriaContainer>
+      </LayoutGaleria>
     </>
   );
 };

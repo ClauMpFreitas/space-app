@@ -5,10 +5,9 @@ import Cabecalho from "./componentes/Cabecalho";
 import BarraLateral from "./componentes/BarraLateral";
 import Banner from "./componentes/Banner";
 import Galeria from "./componentes/Galeria";
-import fotos from "./fotos.json";
 import ModalZoom from "./componentes/ModalZoom";
-import bannerBackground from "./assets/banner.png";
-import Footer from "./componentes/Footer";
+import Rodape from "./componentes/Rodape";
+import fotos from "./fotos.json";
 
 const FundoGradiente = styled.div`
   background: linear-gradient(
@@ -17,70 +16,78 @@ const FundoGradiente = styled.div`
     #04244f 48%,
     #154580 96.76%
   );
-  width: 100%;
   min-height: 100vh;
+  width: 100%;
 `;
 
 const AppContainer = styled.div`
-  width: 1440px;
+  padding: 0 1.5rem;
   margin: 0 auto;
   max-width: 100%;
+  width: 1440px;
 `;
 
 const MainContainer = styled.main`
-  display: flex;
-  gap: 24px;
+  display: grid;
+  gap: 2.5rem 1.5rem;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: repeat(3, max-content);
+  grid-template-areas:
+    "barra-lateral banner"
+    "barra-lateral tags"
+    "barra-lateral galeria";
 
-  @media screen and (max-width: 720px) {
-    flex-direction: column;
+  @media screen and (max-width: 1024px) {
+    gap: 2.625rem 3.625rem;
+    grid-template-areas:
+      "barra-lateral banner"
+      "tags tags"
+      "galeria galeria";
   }
-`;
 
-const ConteudoGaleria = styled.section`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-
-  @media screen and (max-width: 720px) {
-    display: block;
-    margin-left: 15px;
+  @media screen and (max-width: 743px) {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "banner"
+      "tags"
+      "galeria";
   }
 `;
 
 const App = () => {
-  const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos);
-  const [filtro, setFiltro] = useState("");
+  const [fotosGaleria, setFotosGaleria] = useState(fotos);
+  const [fotoModal, setFotoModal] = useState(null);
   const [tag, setTag] = useState(0);
-  const [fotoComZoom, setFotoComZoom] = useState(null);
+  const [filtro, setFiltro] = useState("");
+  const [menuAberto, setMenuAberto] = useState(false);
 
   useEffect(() => {
     const fotosFiltradas = fotos.filter((foto) => {
       const filtroPorTag = !tag || foto.tagId === tag;
       const filtroPorTitulo =
         !filtro || foto.titulo.toLowerCase().includes(filtro.toLowerCase());
+
       return filtroPorTag && filtroPorTitulo;
     });
 
-    setFotosDaGaleria(fotosFiltradas);
+    setFotosGaleria(fotosFiltradas);
   }, [filtro, tag]);
 
-  const aoAlternarFavorito = (foto) => {
-    if (foto.id === fotoComZoom?.id) {
-      setFotoComZoom({
-        ...fotoComZoom,
-        favorita: !fotoComZoom.favorita,
+  const aoAlternarFavorito = (fotoFavorita) => {
+    if (fotoFavorita.id === fotoModal?.id) {
+      setFotoModal({
+        ...fotoModal,
+        favorito: !fotoModal.favorito,
       });
     }
-    setFotosDaGaleria(
-      fotosDaGaleria.map((fotoDaGaleria) => {
-        return {
-          ...fotoDaGaleria,
-          favorita:
-            fotoDaGaleria.id === foto.id
-              ? !foto.favorita
-              : fotoDaGaleria.favorita,
-        };
-      })
+
+    setFotosGaleria(
+      fotosGaleria.map((foto) => ({
+        ...foto,
+        favorito:
+          foto.id === fotoFavorita.id ? !fotoFavorita.favorito : foto.favorito,
+      }))
     );
   };
 
@@ -88,29 +95,28 @@ const App = () => {
     <FundoGradiente>
       <EstilosGlobais />
       <AppContainer>
-        <Cabecalho filtro={filtro} setFiltro={setFiltro} />
+        <Cabecalho setFiltro={setFiltro} setMenuAberto={setMenuAberto} />
         <MainContainer>
-          <BarraLateral />
-          <ConteudoGaleria>
-            <Banner
-              backgroundImage={bannerBackground}
-              texto="A galeria mais completa de fotos do espaço!"
-            />
-            <Galeria
-              fotos={fotosDaGaleria}
-              aoFotoSelecionada={(foto) => setFotoComZoom(foto)}
-              aoAlternarFavorito={aoAlternarFavorito}
-              setTag={setTag}
-            />
-          </ConteudoGaleria>
+          <BarraLateral menuAberto={menuAberto} setMenuAberto={setMenuAberto} />
+          <Banner
+            imagemFundo="imagens/foto-destaque.png"
+            texto="A galeria mais completa de fotos do espaço!"
+          />
+          <Galeria
+            fotos={fotosGaleria}
+            aoFotoSelecionada={(foto) => setFotoModal(foto)}
+            aoAlternarFavorito={aoAlternarFavorito}
+            tag={tag}
+            setTag={setTag}
+          />
         </MainContainer>
-        <Footer />
       </AppContainer>
       <ModalZoom
-        foto={fotoComZoom}
-        aoFechar={() => setFotoComZoom(null)}
+        foto={fotoModal}
+        aoFechar={() => setFotoModal(null)}
         aoAlternarFavorito={aoAlternarFavorito}
       />
+      <Rodape />
     </FundoGradiente>
   );
 };

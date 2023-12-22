@@ -1,17 +1,17 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
-const ItemListaEstilizado = styled.li`
-  font-size: 20px;
-  line-height: 29px;
-  margin-top: 15px;
-  padding: 15px 15px 5px 15px;
-  cursor: pointer;
-  color: ${(props) => (props.$ativo ? "#7B78E5" : "#D9D9D9")};
-  font-family: ${(props) =>
-    props.$ativo ? "GandhiSansBold" : "GandhiSansRegular"};
-  display: flex;
+const ItemEstilizado = styled.li`
   align-items: center;
-  gap: 22px;
+  column-gap: 1.125rem;
+  display: flex;
+`;
+
+const LinkEstilizado = styled.a`
+  color: ${(props) => (props.$ativo ? "#7B78E5" : "#D9D9D9")};
+  cursor: pointer;
+  font-family: ${(props) => props.$ativo && "GandhiSans-Bold"};
+  font-size: 1.5rem;
+  line-height: normal;
 `;
 
 const ItemNavegacao = ({
@@ -21,10 +21,10 @@ const ItemNavegacao = ({
   ativo = false,
 }) => {
   return (
-    <ItemListaEstilizado $ativo={ativo}>
-      <img src={ativo ? iconeAtivo : iconeInativo} alt="" />
-      {children}
-    </ItemListaEstilizado>
+    <ItemEstilizado>
+      <img src={ativo ? iconeAtivo : iconeInativo} />
+      <LinkEstilizado $ativo={ativo}>{children}</LinkEstilizado>
+    </ItemEstilizado>
   );
 };
 

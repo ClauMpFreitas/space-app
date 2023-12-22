@@ -1,17 +1,25 @@
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 const BotaoIcone = styled.button`
-  margin-left: 12px;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: transparent;
+  display: flex;
+  background: none;
   border: none;
   cursor: pointer;
+  height: 24px;
+  justify-content: center;
+  padding: 0;
+  width: 24px;
 
-  @media screen and (max-width: 720px) {
-    justify-content: flex-end;
-    align-items: flex-start;
+  @media screen and (max-width: 1024px) {
+    align-items: end;
+    height: 16px;
+    width: 16px;
+
+    img {
+      height: 14px;
+      width: 14px;
+    }
   }
 `;
 

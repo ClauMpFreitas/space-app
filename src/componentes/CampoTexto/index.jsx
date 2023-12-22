@@ -2,48 +2,43 @@ import styled from "styled-components";
 import search from "./search.png";
 
 const ContainerEstilizado = styled.div`
+  align-self: center;
+  display: flex;
   position: relative;
-  display: inline-block;
-`;
+  width: 602px;
 
-const CampoTextoEstilizado = styled.input`
-  height: 56px;
-  padding: 12px 16px;
-  border-radius: 10px;
-  border: 2px solid;
-  border-color: #c98cf1;
-  background: transparent;
-  box-sizing: border-box;
-  width: 566px;
-  color: #d9d9d9;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 20px;
-
-  @media screen and (max-width: 720px) {
-    width: 100%;
-    }
+  @media screen and (max-width: 743px) {
+    flex-grow: 1;
   }
 `;
 
+const InputEstilizado = styled.input`
+  background-color: transparent;
+  border: 2px solid #c98cf1;
+  border-radius: 10px;
+  color: #d9d9d9;
+  font-size: 1.25rem;
+  height: 60px;
+  line-height: 1.25rem;
+  outline: none;
+  padding: 0.75rem 1rem;
+  width: 100%;
+`;
+
 const IconeLupa = styled.img`
+  align-self: center;
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 38px;
-  height: 38px;
+  right: 18px;
 `;
 
 const CampoTexto = ({ setFiltro }) => {
   return (
     <ContainerEstilizado>
-      <CampoTextoEstilizado
-        placeholder="O que você busca?"
-        onChange={(evento) => {
-          setFiltro(evento.target.value);
-        }}
+      <InputEstilizado
+        placeholder="O que você procura?"
+        onChange={(evento) => setFiltro(evento.target.value)}
       />
-      <IconeLupa src={search} alt="ícone de lupa" />
+      <IconeLupa src={search} alt="Ícone de Lupa" />
     </ContainerEstilizado>
   );
 };

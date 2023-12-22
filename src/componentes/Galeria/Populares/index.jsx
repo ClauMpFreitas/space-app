@@ -3,47 +3,51 @@ import Titulo from "../../Titulo";
 import fotos from "./fotos-populares.json";
 import React, { useState } from "react";
 
-const ColunaFotos = styled.li`
+const ColunaFotos = styled.aside`
   display: flex;
   flex-direction: column;
-  margin-right: 15px;
-  gap: 16px;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
 
-  @media screen and (max-width: 720px) {
-    gap: 8px;
-    margin: 15px;
+  @media screen and (max-width: 1024px) {
+    margin: 1rem;
   }
-`;
 
-const Botao = styled.button`
-  border-radius: 10px;
-  border: 2px solid var(--Degrad-com-rosa, #c98cf1);
-  width: 208px;
-  height: 56px;
-  flex-shrink: 0;
-  color: #fff;
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  background-color: transparent;
-  padding: 2px;
-  margin-top: 24px;
-
-  @media screen and (max-width: 720px) {
-    width: 150px;
-    padding: 0;
-    margin: 15px;
+  @media screen and (max-width: 743px) {
+    align-items: justify;
+    margin: 2rem;
+    width: 100%;
   }
 `;
 
 const Imagem = styled.img`
+  border-radius: 10px;
   max-width: 212px;
 
-  @media screen and (max-width: 720px) {
-    width: 150px;
-    justify-content: flex-end;
+  @media screen and (max-width: 1024px) {
+    height: 158px;
+    max-width: 300px;
+  }
+
+  @media screen and (max-width: 743px) {
+    width: 80%;
+  }
+`;
+
+const Botao = styled.button`
+  background: none;
+  border: 2px solid #c98cf1;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-family: "GandhiSans-Bold";
+  font-size: 1.25rem;
+  line-height: normal;
+  padding: 0.875rem;
+  width: 100%;
+
+  @media screen and (max-width: 743px) {
+    width: 60%;
   }
 `;
 
@@ -54,9 +58,7 @@ const Populares = () => {
 
   const handleVerMaisClick = () => {
     const novasFotosExibidas =
-      quantidadeExibida + 2 <= totalFotos
-        ? quantidadeExibida + 2
-        : totalFotos;
+      quantidadeExibida + 2 <= totalFotos ? quantidadeExibida + 2 : totalFotos;
 
     setQuantidadeExibida(novasFotosExibidas);
   };
@@ -64,13 +66,11 @@ const Populares = () => {
   return (
     <section>
       <Titulo $alinhamento="center">Populares</Titulo>
-
       <ColunaFotos>
         {fotos.slice(0, quantidadeExibida).map((foto) => (
           <Imagem key={foto.id} src={foto.path} alt={foto.alt} />
         ))}
       </ColunaFotos>
-
       {maisFotosDisponiveis > 0 && (
         <Botao onClick={handleVerMaisClick}>Ver mais</Botao>
       )}
